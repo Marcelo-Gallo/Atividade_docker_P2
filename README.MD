@@ -50,5 +50,5 @@ Projeto de exemplo de um CRUD clássico em PHP, utilizando MySQL e Docker.
 
 Sinta-se à vontade para clonar este repositório e fazer modificações conforme desejar!
 
-Projeto desenvolvido por Eder Pansani.  
-Atividade solicitada por Ubiratan Nascimento.
+CRUD desenvolvido por Eder Pansani para uma atividade da disciplina de DW2.
+Atividade docker solicitada por Ubiratan Nascimento.
