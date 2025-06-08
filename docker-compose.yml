@@ -12,7 +12,7 @@ services:
     networks: 
       - ativ_docker
     ports:
-      - "81:80" 
+      - "80:80"  #caso tenha algum servidor web em sua maquina, troque a porta
 
   # --- Serviço MySQL ---
   mysql:
