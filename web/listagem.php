@@ -9,7 +9,7 @@ require 'header.php'
     require "conexao.php";
 
     $sql = "select id, nome, email, mensagem, 
-                    TO_CHAR(datahora, 'DD/MM/YYYY HH24:MI:SS') as datahora 
+                    DATE_FORMAT(datahora, 'DD/MM/YYYY HH24:MI:SS') as datahora 
             FROM contato order by id";
     $stmt = $conn->query($sql);
 
