@@ -1,0 +1,55 @@
+
+services:
+  # --- Serviço PHP ---
+  php:
+    image: php:8.1-apache
+    container_name: gallo-php
+    restart: always
+    volumes:
+      - ./web:/var/www/html/ # Arquivos da aplicação PHP
+    networks: 
+      - ativ_docker
+    ports:
+      - "80:80" 
+
+  # --- Serviço MySQL ---
+  mysql:
+    image: mysql:8.0
+    container_name: gallo-mysql
+    restart: always
+    volumes:
+      - mysql_dados:/var/lib/mysql # Persiste os dados do MySQL
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Scripts de inicialização do banco de dados
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password # Senha do usuário root
+      MYSQL_DATABASE: ativ_db # Nome do banco de dados a ser criado
+      MYSQL_USER: gallo # Nome do usuário do banco de dados
+      MYSQL_PASSWORD: gallo123 # Senha do usuário do banco de dados
+    networks:
+      - ativ_docker
+
+  # --- Serviço PhpMyAdmin (para gerenciar o banco MySQL) ---
+  adminer:
+    image: adminer
+    container_name: gallo-adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql # Nome do serviço MySQL
+    networks:
+      - ativ_docker
+    
+
+
+networks:
+  ativ_docker:
+    driver: bridge
+
+volumes: # Volumes nomeados para persistência de dados
+  mysql_dados:
+    driver: local
+  web:
+    driver: local
