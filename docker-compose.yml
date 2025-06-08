@@ -3,7 +3,7 @@ services:
   # --- Serviço PHP ---
   php:
     build:
-      context: ./config
+      context: .
       dockerfile: Dockerfile
     container_name: gallo-php
     restart: always
